@@ -3,33 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colisión Colectiva</title>
-    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <title>Simulador de Colisiones Pro</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --accent-color: #38bdf8;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Evita scrollbars */
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: var(--bg-gradient);
+            font-family: 'Inter', sans-serif;
+            color: white;
+            height: 100vh;
         }
+
+        /* Contenedor de la interfaz de usuario */
+        .ui-container {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 12px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+        }
+
+        /* Canvas con estilo limpio */
         canvas {
             display: block;
-            background-color: #c6dc20;
+            /* El fondo del canvas ahora es transparente para ver el gradiente del body */
+            background-color: transparent; 
+            cursor: crosshair;
         }
-        h1 {
+
+        /* Pequeña decoración en la esquina inferior derecha */
+        .footer-info {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            margin: 0;
-            font-size: 24px;
-            pointer-events: none; /* Para que no interfiera si haces clic */
+            bottom: 20px;
+            right: 25px;
+            font-size: 12px;
+            opacity: 0.5;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <h1>B. Colisión colectiva</h1>
+    <div class="ui-container">
+        <h1>B. Colisión Colectiva</h1>
+        <div class="badge">Motor Físico Activo</div>
+    </div>
+
+    <div class="footer-info">Interactúa con los elementos en pantalla</div>
+
     <canvas id="canvas"></canvas>
 
     <script src="main.js"></script>
